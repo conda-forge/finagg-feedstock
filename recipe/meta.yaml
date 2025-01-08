@@ -1,3 +1,4 @@
+{% set python_min = '3.10' %}
 {% set name = "finagg" %}
 {% set version = "1.0.2" %}
 
@@ -6,7 +7,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/finagg-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/finagg-{{ version }}.tar.gz
   sha256: 385c2bb62e3f0cb747f77c0899ac07c2e51e7c1687598065ba1de0ac13bcf405
 
 build:
@@ -14,16 +15,16 @@ build:
     - finagg = finagg.__main__:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.10
+    - python {{ python_min }}
     - setuptools >=64.0
     - setuptools-scm >=5
     - pip
   run:
-    - python >=3.10
+    - python >={{ python_min }}
     - beautifulsoup4 ==4.*
     - click ==8.*
     - pandas ==2.*
@@ -45,6 +46,7 @@ test:
     - finagg --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/theOGognf/finagg
