@@ -1,5 +1,6 @@
 {% set name = "finagg" %}
 {% set version = "1.0.3" %}
+{% set python_min = "3.10" %}
 
 package:
   name: {{ name|lower }}
@@ -18,12 +19,12 @@ build:
 
 requirements:
   host:
-    - python >=3.10
+    - python {{ python_min }}
     - setuptools >=64.0
     - setuptools-scm >=5
     - pip
   run:
-    - python >=3.10
+    - python >={{ python_min }}
     - beautifulsoup4 ==4.*
     - click ==8.*
     - pandas ==2.*
@@ -45,6 +46,7 @@ test:
     - finagg --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/theOGognf/finagg
