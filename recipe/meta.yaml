@@ -1,6 +1,5 @@
 {% set name = "finagg" %}
 {% set version = "2.0.0" %}
-{% set python_min = "3.10" %}
 
 package:
   name: {{ name|lower }}
@@ -22,10 +21,10 @@ requirements:
     - python {{ python_min }}
     - setuptools >=64.0
     - setuptools-scm >=5
+    - tomli
     - pip
   run:
     - python >={{ python_min }}
-    - beautifulsoup4 ==4.*
     - click ==8.*
     - pandas ==2.*
     - pandas-stubs ==2.*
@@ -36,7 +35,6 @@ requirements:
     - tqdm ==4.*
     - types-requests ==2.*
     - typing-extensions ==4.*
-    - yfinance <0.2.29
 
 test:
   imports:
