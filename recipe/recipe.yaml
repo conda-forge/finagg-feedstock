@@ -1,0 +1,66 @@
+schema_version: 1
+
+context:
+  name: finagg
+  version: "2.0.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/finagg-${{ version }}.tar.gz
+  sha256: d1a94fe10127acf94d57ba467c5e292db34c24a1e835f4220b13b2ce169e29e0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - finagg = finagg.__main__:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=64.0
+    - setuptools-scm >=5
+    - tomli
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - click ==8.*
+    - pandas ==2.*
+    - pandas-stubs ==2.*
+    - python-dotenv ==0.21.*
+    - requests ==2.*
+    - requests-cache ==0.9.*
+    - sqlalchemy ==2.*
+    - tqdm ==4.*
+    - types-requests ==2.*
+    - typing-extensions ==4.*
+
+tests:
+  - python:
+      imports:
+        - finagg
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - finagg --help
+
+about:
+  summary: Data aggregation with popular and free financial APIs.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/theOGognf/finagg
+  documentation: https://theogognf.github.io/finagg/
+
+extra:
+  recipe-maintainers:
+    - thewchan
