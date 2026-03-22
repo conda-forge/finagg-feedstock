@@ -1,5 +1,5 @@
 {% set name = "finagg" %}
-{% set version = "1.0.3" %}
+{% set version = "2.0.0" %}
 {% set python_min = "3.10" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/finagg-{{ version }}.tar.gz
-  sha256: 4de03419d764855f8a76cd78fb88989e5c9e6eace9dc07ac5613535e5155add2
+  sha256: d1a94fe10127acf94d57ba467c5e292db34c24a1e835f4220b13b2ce169e29e0
 
 build:
   entry_points:
